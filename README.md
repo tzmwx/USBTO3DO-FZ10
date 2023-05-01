@@ -1,5 +1,7 @@
 # USBTO3DO-FZ10
 这是Francois CARON的SATATO3DO项目https://github.com/FCare/SataTo3DO 的拓展，使用了集成电路来缩小体积，具体使用方法请参考其方案
+https://github.com/tzmwx/USBTO3DO-FZ10/blob/53a964b5ae9940e723ff627eb59a6fed1fb0ab20/FZ10TEST.jpg
+
 
 BOM:
 
