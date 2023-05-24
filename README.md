@@ -1,6 +1,9 @@
 ![1280640fz10](https://github.com/tzmwx/USBTO3DO-FZ10/assets/129564095/071e8da6-806c-4cb5-8a4f-96bbda895cc0)
 # USBTO3DO-FZ10
-这是Francois CARON的SATATO3DO项目https://github.com/FCare/SataTo3DO 的拓展，使用了集成电路来缩小体积并扩展至PANASONIC-FZ10，具体使用方法请参考其方案
+这是Francois CARON的SATATO3DO项目https://github.com/FCare/SataTo3DO 的拓展，使用了集成电路来缩小体积并扩展至PANASONIC-FZ10，具体使用方法请参考其方案.
+（注意此站点源代码已更新，不要直接使用已编译好的UF2文件，需要重新编译UF2文件后使用）
+
+
 
 
 BOM:
