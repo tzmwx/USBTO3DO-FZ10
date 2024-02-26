@@ -1,60 +1,47 @@
-![1280640fz10](https://github.com/tzmwx/USBTO3DO-FZ10/assets/129564095/071e8da6-806c-4cb5-8a4f-96bbda895cc0)
+![1280640fz10](finish/FINISH2.jpg)
 # USBTO3DO-FZ10
-这是Francois CARON的SATATO3DO项目https://github.com/FCare/SataTo3DO 的拓展，使用了集成电路来缩小体积并扩展至PANASONIC-FZ10，具体使用方法请参考其方案.
+
+This is an expansion of Francois CARON's SATATO3DO project https://github.com/FCare/SataTo3DO. It uses integrated circuits to reduce the size and expand it to Panasonic FZ-10. Please refer to its plan for specific usage methods.
+
+
+Regarding UF2 files, please note that the source code of this build has been updated. Do not use compiled UF2 files directly.
+How to obtain a UF2 file that can be used: Method 1. Please recompile the source file yourself to obtain a new UF2 file;
+Method 2. Authorized by Francois CARON, if you only make it for yourself and not for commercial use, you can contact tzmwx to get a copy. Special @TZMWXdiyer gets new UF2 files. Please do not bother Mr. Francois CARON with any further emails.
 
 
 
 
+## BOM
+### Minimum system
 
-关于UF2文件，注意此站点源代码已更新，不要直接使用已编译好的UF2文件。
-如何获得一个可以使用的UF2文件：
-方法1.请自行重新编译源文件文件获得一个新UF2文件；
-方法2.经Francois CARON授权，如果你只是为自己制作，非用于商业用途，可以联系我推特@TZMWXdiyer获得新UF2文件。请不要再发邮件打扰Francois CARON先生。
-
-
-
-
-BOM:
-最小系统：
-
-U1 RP2040 PICO模块(兼容引脚功能看2040pico.jpg）
+U1 RP2040 PICO module (see [2040pico.jpg](2040pico/2040pico.jpg) for compatible pin functions)
 
 U2/U3 TXS0108EPWR TSSOP-20
 
 U4 74LVC4245 TSSOP-24
 
 
+### If you want to build a disk changing function on the module:
+You need to add a 6X6mm button switch and an R2 4.7K (SMD0603 or direct plug)
 
+### If you want to build a CD cover switch function on the module:
+You need to add R2 4.7K, R3 10K, Q1 9014 (or other NPN transistor) (SMD0603 or direct plug)
 
-如果你要在模块上建立一个换盘功能：
+### If you want to create a disk reading light on the module (same as the green disk reading light on the host panel):
+You need to add: R1: 470Ω LED: 3MM (SMD0603 or direct plug)
 
-你需要增加一个6X6mm的按钮开关和一个R2 4.7K (SMD0603或直插)
+The position of the capacitor is reserved and does not need to be installed. C1/C2: 220uf-470uf/10V (direct plug) C3/C4/C5/C6/C7: 0.1uf (SMD0603)
 
+X1, active crystal oscillator OSC SMD7050 33.86Mhz, is reserved. It only needs to be installed when you do not pick up IC640 but remove IC640, and then connect CLK to the motherboard L643. But if you need to use the function of playing music CD, you must install this OSC, otherwise the music CD will freeze once in the time period of 3:00-3:15, and then the volume bar will freeze, and the game controller will slowly stop working. For details, please refer to the information in the AUDIOCD directory.
 
-如果你要在模块上建立一个CD盖子开关换盘功能：
+READ disk reading light interface, connect to Q410 as shown in the figure
 
-你需要增加R2 4.7K，R3 10K，Q1 9014(或其他NPN三极管） (SMD0603或直插)
+COVER optical drive cover induction interface, connect to SW721 as shown in the figure, you need to add R2 4.7K, R3 10K, Q1 9014 (or other NPN transistor), use the switch CD compartment cover to realize the disc changing function
 
+The DISC interface is a parallel connection of the disc change keys. If you don't like the CD hatch mode, you can add a button switch.
 
-如果你要在模块上建立一个读盘灯（同主机面板绿色读盘灯）：
+The (+5V, D-, D+, GND) interface can extend the USB without using the C extension cable. Note that this interface must be welded to the 2040 module at the bottom in advance.
 
-你需要增加： R1：470Ω  LED：3MM  (SMD0603或直插)
+Regarding fixation: There are a total of 5 vias ABCDE on the PCB (refer [here](install/step2.jpg) for details). They are used to fix the motherboard. When your 3DO motherboard is MODEL A (CLIO CPU), please pay attention to the possibility of D vias. It will affect the plugging and unplugging of TYPE-C cable, so it is necessary to increase the thickness of 1-1.5 mm between the RP2040 module and the PCB.
 
-
-
-预留了电容的位置，可以不需要安装， C1/C2：220uf-470uf/10V （直插）   C3/C4/C5/C6/C7：0.1uf （SMD0603）
-
-预留了X1,有源晶振OSC SMD7050 33.86Mhz,只有当你不对IC640进行挑脚而是拆除IC640时才需要安装，然后将CLK连接至主板L643。但如果你需要使用播放音乐CD功能，必须安装这个OSC，否则会在播放音乐CD在3:00-3:15时间段内卡顿一次，然后音量条卡顿，慢慢的游戏手柄将不起作用，具体看AUDIOCD目录内信息.
-
-
-READ读盘灯接口，按图连接至Q410
-
-COVER光驱盖板感应接口，按图连接至SW721，需要增加R2 4.7K，R3 10K，Q1 9014(或其他NPN三极管）,用开关CD舱盖来实现换盘功能
-
-DISC接口是换盘键并联，如不喜欢CD舱盖模式，可飞线一个按钮开关
-
-(+5V,D-,D+,GND)接口可以延长USB，而不使用C延长线，注意此接口要提前在底部与2040模块要焊接好
-
-关于固定：PCB上有ABCDE一共5个过孔（具体参考install\step2.jpg），它们用来与主板固定，,当你的3DO主板是MODEL A（CLIO CPU)时，要注意D过孔可能会影响到TYPE-C线的插拔，所以需要将RP2040模块与PCB之间增加1-1.5毫米的厚度
-
-注意：为了你更方便的DIY,部分元件焊接位置设计了SMD和直插两种模式，如果你使用“直插”的元件，请注意PCB反面的平整度，尤其是6x6按钮开关，最好使用SMD的，否则引脚会触碰到IC640,使PCB安装不平整
+Note: For your more convenient DIY, some component soldering positions are designed with two modes: SMD and direct plug. If you use "direct plug" components, please pay attention to the flatness of the back of the PCB, especially the 6x6 button switch, it is best to use SMD, otherwise the pins will touch IC640, making the PCB installation uneven.
